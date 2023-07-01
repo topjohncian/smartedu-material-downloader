@@ -1,14 +1,12 @@
 // ==UserScript==
 // @name         SmartEDUTextbookDownloader
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://greasyfork.org/zh-CN/scripts/469898-smartedutextbookdownloader
+// @version      1.0
 // @description  下载 国家中小学智慧教育平台 课本
 // @author       @topjohncian
 // @require      https://unpkg.com/idb@7/build/umd.js
 // @require      https://unpkg.com/coco-message@2.0.3/coco-message.min.js
 // @match        *://basic.smartedu.cn/*
-// @grant        GM.xmlHttpRequest
-// @run-at       document-start
 // @connect      r1-ndr.ykt.cbern.com.cn
 // @connect      r2-ndr.ykt.cbern.com.cn
 // @connect      r3-ndr.ykt.cbern.com.cn
@@ -176,7 +174,7 @@ function tchMaterialHook() {
       const button = document.createElement("button");
       button.dataset.materialId = material!!.id;
       button.dataset.materialTitle = material!!.title;
-      button.innerText = `下载 ${material.title}`;
+      button.innerText = `下载 ${material.title}.pdf`;
       button.setAttribute("style", "z-index: 999;");
       button.onclick = onDownloadClick;
       materialSpanDiv.appendChild(button);
@@ -192,7 +190,8 @@ function tchMaterialDetailHook() {
   const materialSpanDiv = document.querySelector(
     `#main-content > div.content > div:last-child > div > div > div:nth-child(1)`
   );
-  if (materialSpanDiv === null) {
+  const materialTitle = materialSpanDiv?.querySelector("h3")?.innerText ?? "";
+  if (materialSpanDiv === null || materialTitle === "") {
     if (retryTimes >= 60) {
       return;
     } else {
@@ -203,12 +202,11 @@ function tchMaterialDetailHook() {
   }
   retryTimes = 0;
   // const material = window.materialInfo.find((m) => m.id === contentId);
-  const materialTitle = materialSpanDiv.querySelector("h3")?.innerText;
 
   const button = document.createElement("button");
   button.dataset.materialId = contentId;
   button.dataset.materialTitle = materialTitle;
-  button.innerText = `下载 ${materialTitle}`;
+  button.innerText = `下载 ${materialTitle}.pdf`;
   button.setAttribute("style", "z-index: 999;");
   button.onclick = onDownloadClick;
   materialSpanDiv.appendChild(button);
