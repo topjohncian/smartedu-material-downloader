@@ -12,6 +12,7 @@
 // @connect      r1-ndr.ykt.cbern.com.cn
 // @connect      r2-ndr.ykt.cbern.com.cn
 // @connect      r3-ndr.ykt.cbern.com.cn
+// @license      MIT
 // ==/UserScript==
 import * as idb from "idb";
 window.materialInfo = [];
