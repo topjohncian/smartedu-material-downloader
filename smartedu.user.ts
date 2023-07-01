@@ -121,6 +121,7 @@ function tchMaterialHook() {
     }
     return;
   }
+  retryTimes = 0;
 
   const config = { attributes: true, childList: true, subtree: true };
   // Callback function to execute when mutations are observed
@@ -192,8 +193,15 @@ function tchMaterialDetailHook() {
     `#main-content > div.content > div:last-child > div > div > div:nth-child(1)`
   );
   if (materialSpanDiv === null) {
+    if (retryTimes >= 60) {
+      return;
+    } else {
+      retryTimes += 1;
+      setTimeout(() => tchMaterialDetailHook(), 1000);
+    }
     return;
   }
+  retryTimes = 0;
   // const material = window.materialInfo.find((m) => m.id === contentId);
   const materialTitle = materialSpanDiv.querySelector("h3")?.innerText;
 
