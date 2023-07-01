@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SmartEDUTextbookDownloader
 // @namespace    https://greasyfork.org/zh-CN/scripts/469898-smartedutextbookdownloader
-// @version      1.0
+// @version      1.5
 // @description  下载 国家中小学智慧教育平台 课本
 // @author       @topjohncian
 // @require      https://unpkg.com/idb@7/build/umd.js
@@ -11,6 +11,7 @@
 // @connect      r2-ndr.ykt.cbern.com.cn
 // @connect      r3-ndr.ykt.cbern.com.cn
 // @license      MIT
+// @grant        window.onurlchange
 // ==/UserScript==
 
 import * as idb from "idb";
@@ -220,7 +221,7 @@ async function getMaterialInfo() {
     .getAll();
 }
 
-(async function () {
+async function main() {
   "use strict";
 
   if (new URL(location.href).pathname === "/tchMaterial") {
@@ -228,4 +229,17 @@ async function getMaterialInfo() {
   } else if (new URL(location.href).pathname === "/tchMaterial/detail") {
     tchMaterialDetailHook();
   }
+}
+
+(async function () {
+  // @ts-expect-error
+  if (window.onurlchange === null) {
+    // feature is supported
+    window.addEventListener("urlchange", (info) => {
+      console.log(info);
+      main();
+    });
+  }
+
+  await main();
 })();
