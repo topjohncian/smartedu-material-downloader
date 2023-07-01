@@ -1,0 +1,27 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@trim21/gm-fetch': ^0.1.14
+  idb: ^7.1.1
+  typescript: ^5.1.6
+
+dependencies:
+  '@trim21/gm-fetch': 0.1.14
+  idb: 7.1.1
+  typescript: 5.1.6
+
+packages:
+
+  /@trim21/gm-fetch/0.1.14:
+    resolution: {integrity: sha512-mu5yU5JGqD5MWlboK9wuNtWcCPL1tWwgVFXJo/Yu9UHLefeaTDXGC0CB6DME11ttWEzsxO62eN8YxVMG92wnMA==}
+    dev: false
+
+  /idb/7.1.1:
+    resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
+    dev: false
+
+  /typescript/5.1.6:
+    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: false
