@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         SmartEDUTextbookDownloader
+// @name         国家中小学智慧教育平台电子课本教材下载 最新版[直接下载pdf 跳过浏览器默认预览]
 // @namespace    https://greasyfork.org/zh-CN/scripts/469898-smartedutextbookdownloader
-// @version      1.5
-// @description  下载 国家中小学智慧教育平台 课本
+// @version      1.7
+// @description  在国家中小学智慧教育平台网站中添加电子课本下载按钮，在列表中无需跳转，无需登录，批量下载
 // @author       @topjohncian
 // @require      https://unpkg.com/idb@7/build/umd.js
 // @require      https://unpkg.com/coco-message@2.0.3/coco-message.min.js
@@ -13,7 +13,6 @@
 // @license      MIT
 // @grant        window.onurlchange
 // ==/UserScript==
-
 window.materialInfo = [];
 function ramdomItem(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -122,14 +121,24 @@ function tchMaterialHook() {
     const materialSpanDivs = materialUlElement.querySelectorAll(
       "li > div:nth-child(2) >  div:nth-child(1)"
     );
+    const versionLabelSpan = document.querySelector(
+      "#main-content > div.content > div.fish-spin-nested-loading.x-edu-nested-loading > div > div:nth-child(2) > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) >  label.fish-radio-tag-wrapper-checked > span:nth-child(2)"
+    );
+    const versionLabel = versionLabelSpan?.innerText ?? "";
     materialSpanDivs.forEach((materialSpanDiv) => {
       materialSpanDiv.querySelector("button")?.remove();
     });
     for (const materialSpanDiv of materialSpanDivs) {
       const materialName = materialSpanDiv.querySelector("span").innerText;
-      const material = window.materialInfo.find(
+      const materials = window.materialInfo.filter(
         (m) => m.title === materialName
       );
+      const material =
+        versionLabel !== ""
+          ? materials.find((m) =>
+              m.tag_list.some((tag) => tag.tag_name === versionLabel)
+            ) ?? materials[0]
+          : materials[0];
       const button = document.createElement("button");
       button.dataset.materialId = material.id;
       button.dataset.materialTitle = material.title;
