@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         国家中小学智慧教育平台电子课本教材下载 最新版[直接下载pdf 跳过浏览器默认预览]
+// @name         [已更新]国家中小学智慧教育平台电子课本教材下载 最新版[直接下载pdf 跳过浏览器默认预览]
 // @namespace    https://greasyfork.org/zh-CN/scripts/469898-smartedutextbookdownloader
-// @version      1.7
-// @description  在国家中小学智慧教育平台网站中添加电子课本下载按钮，在列表中无需跳转，无需登录，批量下载
+// @version      2.0
+// @description  在国家中小学智慧教育平台网站中添加电子课本下载按钮，支持列表批量下载，无需跳转，需要登录
 // @author       @topjohncian
 // @require      https://unpkg.com/idb@7/build/umd.js
 // @require      https://unpkg.com/coco-message@2.0.3/coco-message.min.js
