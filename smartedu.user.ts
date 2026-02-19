@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         [已更新]国家中小学智慧教育平台电子课本教材下载 最新版[直接下载pdf 跳过浏览器默认预览]
 // @namespace    https://greasyfork.org/zh-CN/scripts/469898-smartedutextbookdownloader
+// @homepage     https://github.com/topjohncian/smartedu-material-downloader
 // @version      2.0
 // @description  在国家中小学智慧教育平台网站中添加电子课本下载按钮，支持列表批量下载，无需跳转，需要登录
 // @author       @topjohncian
