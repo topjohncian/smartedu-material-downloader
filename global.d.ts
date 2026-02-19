@@ -1,4 +1,14 @@
 declare global {
+  namespace CryptoJS {
+    interface WordArray {
+      toString(encoder?: Encoder): string;
+    }
+    interface Encoder { }
+    const enc: { Base64: Encoder };
+    function HmacSHA256(message: string, key: string): WordArray;
+  }
+  // eslint-disable-next-line no-var
+  var CryptoJS: typeof CryptoJS;
   interface Window {
     // ah: AH;
     materialInfo: Array<any>;
@@ -178,4 +188,4 @@ declare global {
   // }
 }
 
-export {};
+export { };
